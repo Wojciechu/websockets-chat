@@ -9,20 +9,21 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 
-  var user = 'default user';
+  var user = 'some user';
 
   socket.on('name addition', function(name){
     user = name;
     io.emit('chat message', name + ' joined chat');
   });
   
-  console.log('a user connected');
   socket.on('chat message', function(msg){
     io.emit('chat message', user + ':  ' + msg);
   });
+
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    io.emit('chat message', user + ' left chat');
   });
+  
 });
 
 http.listen(8000, function(){
