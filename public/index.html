@@ -8,26 +8,46 @@
       body { font: 13px Helvetica, Arial; }
       form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
       form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      form button { width: 9%; background: rgb(146, 233, 74); border: none; padding: 10px; }
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
+      #msg { display: none; }
+      #name { bottom: 50%; width: 25%; left: 40% }
+      #name label { position: absolute; color: green; bottom: 50px;  font-weight: 700; }
+      #name input { width: initial; }
+      #name button { width: initial; background: rgb(259, 233, 55) }
     </style>
   </head>
   <body>
+
+    <ul id="myName"></ul>
+    <form id="name" action="">
+      <label>What's your name?</label>
+      <input id="n" autocomplete="off" /><button>That's my name</button>
+    </form>
     <ul id="messages"></ul>
-    <form action="">
+    <form id="msg" action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
-      $('form').submit(function(){
+
+      $('#name').submit(function(){
+        socket.emit('name addition', $('#n').val());
+        $('#name').hide();
+        $('#msg').show();
+        return false;
+      });
+
+      $('#msg').submit(function(){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
       });
+
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });

@@ -4,7 +4,8 @@
   "author": "wojciechu",
   "dependencies": {
     "express": "^4.8.5",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "lodash": "^2.4.1"
   },
   "engine": "node 0.10.26"
 }
