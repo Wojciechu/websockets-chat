@@ -23,9 +23,10 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     io.emit('chat message', user + ' left chat');
   });
-  
+
 });
 
-http.listen(8000, function(){
-  console.log('listening on *:8000');
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function(){
+  console.log('listening on ' + port);
 });
