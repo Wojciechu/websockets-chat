@@ -10,6 +10,6 @@ npm install
 
 node app.js
 
-- Server runs on port 8000. Please open following address in your web-browser
+- Server runs on port 5000. Please open following address in your web-browser
 
-http://localhost:8000
+http://localhost:5000
