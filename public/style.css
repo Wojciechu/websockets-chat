@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 13px Helvetica, Arial;
+}
+form {
+  background: #000;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+form input {
+  border: 0;
+  padding: 10px;
+  width: 90%;
+  margin-right: .5%;
+}
+form button {
+  width: 9%;
+  background: rgb(146, 233, 74);
+  border: none;
+  padding: 10px;
+}
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#messages li {
+  padding: 5px 10px;
+}
+#messages li:nth-child(odd) {
+  background: #eee;
+}
+#msg {
+  display: none;
+}
+#name {
+  bottom: 50%;
+  width: 25%;
+  left: 40%;
+  transition: translate(50%);
+}
+#name label {
+  position: absolute;
+  color: green;
+  bottom: 50px;
+  font-weight: 700;
+}
+#name input {
+  width: initial;
+}
+#name button {
+  width: initial;
+  background: rgb(259, 233, 55)
+}

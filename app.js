@@ -1,7 +1,11 @@
-var app = require('express')();
+var express  = require('express');
+var app = express();
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
-var _ = require('lodash')();
+var io   = require('socket.io')(http);
+var _    = require('lodash')();
+var path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
   res.sendfile('public/index.html');
