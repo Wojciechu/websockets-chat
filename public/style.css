@@ -41,8 +41,8 @@ form button {
 }
 #name {
   bottom: 50%;
-  width: 25%;
-  left: 40%;
+  padding: 10px;
+  text-align: center;
   transition: translate(50%);
 }
 #name label {
