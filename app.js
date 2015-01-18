@@ -2,10 +2,12 @@ var express  = require('express');
 var app = express();
 var http = require('http').createServer(app);
 var path = require('path');
-var chat = require('./chat');
 
 global._    = require('lodash')();
 global.io   = require('socket.io')(http);
+
+var chat = require('./chat');
+var events = require('./events');
 
 module.exports = app;
 
