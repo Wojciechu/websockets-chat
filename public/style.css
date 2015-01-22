@@ -35,6 +35,17 @@ form button {
 #messages li:nth-child(odd) {
   background: #eee;
 }
+#messages li .nr {
+  color: #888;
+}
+#messages li .who {
+  padding: 10px;
+  font-weight: 600;
+}
+#messages li .time {
+  color: #888;
+  float: right;
+}
 #msg {
   display: none;
 }

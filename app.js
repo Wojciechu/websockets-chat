@@ -5,6 +5,7 @@ var path        = require('path');
 global.io       = require('socket.io')(http);
 
 global._        = require('lodash')();
+global.moment   = require('moment');
 
 var environment = require('./definitions/environment')(app, express, path);
 var events      = require('./definitions/events');
