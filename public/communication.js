@@ -17,10 +17,10 @@ $('#msg').submit(function(){
 socket.on('chat message', function(data){
   var message;
   if(pattern.test(data.msg)) {
-      message = '<li>' + data.user + ': <a href="' + data.msg + '" target="_blank">' + data.msg + '</a></li>';
+    message = '<li>{0}: <a href="{1}" target="_blank">{1}</a></li>'.format(data.user, data.msg);
   }
   else {
-      message = '<li>' + data.user + ': ' + data.msg + '</li>';
+    message = '<li>{0}: {1}</li>'.format(data.user, data.msg);
   }
   $('#messages').append(message);
 });
