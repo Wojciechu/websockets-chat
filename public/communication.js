@@ -2,7 +2,12 @@ var socket = io();
 var pattern = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 
 $('#name').submit(function(){
-  socket.emit('name addition', $('#n').val());
+  var name = $('#n').val();
+
+  socket.emit('name addition', name);
+
+  $('.you .name').append(name);
+  $('.menu').show();
   $('#name').hide();
   $('#msg').show();
   return false;
@@ -24,4 +29,17 @@ socket.on('chat message', function(data){
   message = '<li><span class="nr">#{0}</span><span class="who">{1}:</span><span>{2}</span><span class="time">{3}</span></li>'.format(data.id, data.user, message, data.time);
 
   $('#messages').prepend(message);
+});
+
+socket.on('registered-users', function (users) {
+  var $users = $('.users-list');
+  var $count = $('.count');
+
+  $count.empty();
+  $count.append(users.length);
+
+  $users.empty();
+  _.forEach(users, function (value) {
+    $users.append('<li>{0}</li>'.format(value));
+  });
 });

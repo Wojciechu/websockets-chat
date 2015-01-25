@@ -4,6 +4,12 @@ html
     title= pageTitle
     link(rel="stylesheet", type="text/css", href="style.css")
   body
+    div.menu
+      div.you you are logged in as: 
+        span.name
+      button.users users online: 
+        span.count
+      ul.users-list
     ul#myName
     form#name
       input#n(autocomplete="off", placeholder=placeholder)
@@ -14,5 +20,6 @@ html
       button send
     script(src="/socket.io/socket.io.js")
     script(src="http://code.jquery.com/jquery-1.11.1.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js")
     script(type="text/javascript", src="helpers.js")
     script(type="text/javascript", src="communication.js")
