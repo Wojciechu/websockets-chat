@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 body {
   font: 13px Helvetica, Arial;
@@ -31,7 +30,7 @@ body {
   height: 35px;
   padding: 0 10px;
   text-align: center;
-  width: 128px;
+  width: 130px;
 }
 .menu .users:hover,
 .menu .users:focus {
@@ -60,14 +59,15 @@ form {
 }
 form input {
   border: 0;
-  padding: 1%;
-  width: 90%;
+  padding: 0 1%;
+  height: 40px;
+  width: 88%;
 }
 form button {
-  width: 10%;
   background: rgb(146, 233, 74);
   border: none;
-  padding: 1%;
+  height: 40px;
+  width: 10%;
 }
 #messages {
   list-style-type: none;
@@ -113,6 +113,6 @@ form button {
   width: initial;
 }
 #name button {
-  width: initial;
-  background: rgb(259, 233, 55)
+  background: rgb(259, 233, 55);
+  width: 10%;
 }
