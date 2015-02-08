@@ -8,7 +8,9 @@
     "socket.io": "~1.0.6",
     "lodash": "~2.4.1",
     "jade": "^1.9.1",
-    "moment": "^2.9.0"
+    "moment": "^2.9.0",
+    "crypto-js": "^3.1.2-5",
+    "body-parser": "^1.11.0"
   },
   "engine": "node 0.10.26"
 }
