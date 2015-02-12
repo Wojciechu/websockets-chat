@@ -7,10 +7,8 @@
       async: false,
       cache: false,
       success: function(salt) {
-        var username = $('#username').val();
-        var password = CryptoJS.SHA256($('#password').val());
+        $('#passwordHash').val(CryptoJS.HmacSHA256($('#password').val(), salt).toString());
         $('#password').val('');
-        $('#passwordHash').val(CryptoJS.SHA256(username + password + salt).toString());
       }
     });
   });

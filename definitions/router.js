@@ -7,8 +7,9 @@ module.exports = function (app) {
   });
   app.post('/login/auth', function(request, response) {
     var credentials = request.body;
-    var hash = 'www' + sha256('www') + 'posolone';
-    if(credentials.passwordHash === sha256(hash).toString()) {
+    var hash = cryptoJS.HmacSHA256('www', 'posolone').toString();
+    if(credentials.username + credentials.passwordHash === 'www' + hash) {
+      response.cookie('auth', 'www' + hash);
       response.redirect('/chat');
     }
     else {
