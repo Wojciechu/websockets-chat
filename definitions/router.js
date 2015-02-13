@@ -9,7 +9,12 @@ module.exports = function (app) {
     var credentials = request.body;
     var hash = cryptoJS.HmacSHA256('www', 'posolone').toString();
     if(credentials.username + credentials.passwordHash === 'www' + hash) {
+      var cookieData = {
+        username: credentials.username,
+        hash: hash
+      };
       response.cookie('auth', 'www' + hash);
+      response.cookie('username', 'www');
       response.redirect('/chat');
     }
     else {

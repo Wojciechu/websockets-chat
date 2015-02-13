@@ -1,15 +1,15 @@
 var socket = io();
 var pattern = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 
+var name = getCookie('username');
+socket.emit('name addition', name);
+$('.you .name').append(name);
+$('.menu').show();
+$('#name').hide();
+$('#msg').show();
+
 $('#name').submit(function(){
   var name = $('#n').val();
-
-  socket.emit('name addition', name);
-
-  $('.you .name').append(name);
-  $('.menu').show();
-  $('#name').hide();
-  $('#msg').show();
   return false;
 });
 
