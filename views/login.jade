@@ -4,13 +4,14 @@ html
     title login
     link(rel="stylesheet", type="text/css", href="login.css")
   body
-    form(action="/login/auth", method="POST")
-      label(for="username") username
-      input#username(name="username", type="text")
-      label(for="password") password
-      input#password(name="password", type="password")
-      input#passwordHash(name="passwordHash", type="hidden")
-      button.submit(type="submit") login
+    div.login-form
+      form(action="/login/auth", method="POST")
+        label(for="username") username
+        input#username(name="username", type="text")
+        label(for="password") password
+        input#password(name="password", type="password")
+        input#hash(name="hash", type="hidden")
+        button.submit(type="submit") login
     script(src="https://code.jquery.com/jquery-2.1.3.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js")
     script(type="text/javascript", src="login.js")

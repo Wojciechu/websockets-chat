@@ -1,3 +1,6 @@
+var cryptoJS  = require('crypto-js');
+var authorize = require('./security').authorize;
+
 module.exports = function (app) {
   app.get('/', function(request, response) {
     response.render('login');
@@ -7,14 +10,9 @@ module.exports = function (app) {
   });
   app.post('/login/auth', function(request, response) {
     var credentials = request.body;
-    var hash = cryptoJS.HmacSHA256('www', 'posolone').toString();
-    if(credentials.username + credentials.passwordHash === 'www' + hash) {
-      var cookieData = {
-        username: credentials.username,
-        hash: hash
-      };
-      response.cookie('auth', 'www' + hash);
-      response.cookie('username', 'www');
+    if(authorize(credentials.username, credentials.hash)) {
+      response.cookie('hash', credentials.hash);
+      response.cookie('username', credentials.username);
       response.redirect('/chat');
     }
     else {

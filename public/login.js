@@ -7,7 +7,7 @@
       async: false,
       cache: false,
       success: function(salt) {
-        $('#passwordHash').val(CryptoJS.HmacSHA256($('#password').val(), salt).toString());
+        $('#hash').val(CryptoJS.HmacSHA256($('#password').val(), salt).toString());
         $('#password').val('');
       }
     });
