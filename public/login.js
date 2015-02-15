@@ -1,9 +1,13 @@
 (function () {
   'use strict';
   $('form').on('submit', function (event) {
+    var username = {
+      name: $('#username').val()
+    };
     $.ajax({
       url: "/login/salt", 
-      type: 'GET',
+      type: 'POST',
+      data: username,
       async: false,
       cache: false,
       success: function(salt) {

@@ -1,5 +1,4 @@
-var cryptoJS  = require('crypto-js');
-var authorize = require('./security').authorize;
+var security = require('./security');
 
 module.exports = function (app) {
   app.get('/', function(request, response) {
@@ -9,9 +8,11 @@ module.exports = function (app) {
     response.render('chat');
   });
   app.post('/login/auth', function(request, response) {
+    var token;
     var credentials = request.body;
-    if(authorize(credentials.username, credentials.hash)) {
-      response.cookie('hash', credentials.hash);
+    if(security.authenticate(credentials.username, credentials.hash)) {
+      token = security.prepareAuthZToken(credentials.hash);
+      response.cookie('hash', token);
       response.cookie('username', credentials.username);
       response.redirect('/chat');
     }
@@ -19,7 +20,8 @@ module.exports = function (app) {
       response.status(403).send('Forbidden');
     }
   });
-  app.get('/login/salt', function(request, response) {
-    response.send('posolone');
+  app.post('/login/salt', function(request, response) {
+    var salt = security.generateSalt(request.body.name);
+    response.send(salt);
   });
 };

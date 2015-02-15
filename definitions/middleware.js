@@ -7,6 +7,8 @@ module.exports = function (app) {
       next();
     } 
     else {
+      response.clearCookie('hash');
+      response.clearCookie('username');
       response.redirect('/');
     }
   });

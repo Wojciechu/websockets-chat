@@ -2,6 +2,6 @@ module.exports.users = {
   www: {
     username: 'www',
     salt: 'posolone',
-    hash: '0a2e6ab2bbd0851f3b0bb32bf16f6cd54f2e7a49b1e4b7aae952e49309129314'
+    hash: '516bf395f9aad3656d84783b9b27c5de77642150c92d651f4d66190820db9e64'
   }
 };
