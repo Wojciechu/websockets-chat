@@ -1,12 +1,15 @@
 var security = require('./security');
 
 module.exports = function (app) {
+
   app.get('/', function(request, response) {
     response.render('login');
   });
+
   app.get('/chat', function(request, response) {
     response.render('chat');
   });
+
   app.post('/login/auth', function(request, response) {
     var token;
     var credentials = request.body;
@@ -20,8 +23,15 @@ module.exports = function (app) {
       response.status(403).send('Forbidden');
     }
   });
+
   app.post('/login/salt', function(request, response) {
     var salt = security.generateSalt(request.body.name);
     response.send(salt);
+  });
+
+  app.get('/logout', function(request, response) {
+    response.clearCookie('hash');
+    response.clearCookie('username');
+    response.redirect('/');
   });
 };

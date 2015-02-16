@@ -12,6 +12,20 @@ body {
   height: 35px;
   width: 100%;
 }
+.menu .logout {
+  border-left: 1px solid #333;
+  color: #fff;
+  float: right;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  text-decoration: none;
+  width: 100px;
+}
+.menu .logout:hover {
+  background-color: #333;
+  font-weight: 600;
+}
 .menu .you {
   border-right: 1px solid #333;
   float: right;
