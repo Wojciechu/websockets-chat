@@ -1,21 +1,21 @@
 doctype html
 html
   head
-    title chat
-    link(rel="stylesheet", type="text/css", href="style.css")
+    title Chat
+    link(rel="stylesheet", type="text/css", href="chat.css")
   body
     div.menu
       a.logout(href="/logout") Logout
-      button.users users online: 
+      button.users Users online: 
         span.count
-      div.you you are logged in as: 
+      div.you You are logged in as: 
         span.name
       ul.users-list
     ul#myName
     ul#messages
     form#msg
       input#m(autocomplete="off")
-      button send
+      button Send
     script(src="/socket.io/socket.io.js")
     script(src="https://code.jquery.com/jquery-2.1.3.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js")

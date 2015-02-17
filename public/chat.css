@@ -23,7 +23,6 @@ body {
 }
 .menu .logout:hover {
   background-color: #333;
-  font-weight: 600;
 }
 .menu .you {
   border-right: 1px solid #333;
@@ -48,7 +47,6 @@ body {
 .menu .users:hover,
 .menu .users:focus {
   background-color: #333;
-  font-weight: 600;
 }
 .users:focus ~ .users-list {
   display: block;
@@ -77,10 +75,13 @@ form input {
   width: 88%;
 }
 form button {
-  background: rgb(146, 233, 74);
+  background-color: #ffff00;
   border: none;
   height: 40px;
   width: 10%;
+}
+form button:hover {
+  background-color: #ffcc00;
 }
 #messages {
   list-style-type: none;
