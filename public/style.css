@@ -8,7 +8,6 @@ body {
 .menu {
   background-color: #000;
   color: #fff;
-  display: none;
   height: 35px;
   width: 100%;
 }
@@ -107,26 +106,4 @@ form button {
 #messages li .time {
   color: #888;
   float: right;
-}
-#msg {
-  display: none;
-}
-#name {
-  bottom: 50%;
-  padding: 10px;
-  text-align: center;
-  transition: translate(50%);
-}
-#name label {
-  position: absolute;
-  color: green;
-  bottom: 50px;
-  font-weight: 700;
-}
-#name input {
-  width: initial;
-}
-#name button {
-  background: rgb(259, 233, 55);
-  width: 10%;
 }
