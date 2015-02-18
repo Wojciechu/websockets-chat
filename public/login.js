@@ -10,7 +10,7 @@
       data: username,
       async: false,
       cache: false,
-      success: function(salt) {
+      success: function (salt) {
         $('#hash').val(CryptoJS.HmacSHA256($('#password').val(), salt).toString());
         $('#password').val('');
       }

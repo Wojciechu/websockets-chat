@@ -3,7 +3,7 @@ var security = require('./security');
 module.exports = function (app) {
 
   app.get('/', function(request, response) {
-    response.render('login');
+    response.render('login', {error: request.query.error});
   });
 
   app.get('/chat', function(request, response) {
@@ -20,7 +20,7 @@ module.exports = function (app) {
       response.redirect('/chat');
     }
     else {
-      response.status(403).send('Forbidden');
+      response.redirect('/?error=true');
     }
   });
 
