@@ -14,15 +14,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/chat', function (request, response, next) {
-    if(authorize(request.cookies.username, request.cookies.hash)) {
-      next();
-    } 
-    else {
-      response.clearCookie('hash');
-      response.clearCookie('username');
-      response.redirect('/');
-    }
-  });
+  if(authorize(request.cookies.username, request.cookies.hash)) {
+    next();
+  } 
+  else {
+    response.clearCookie('hash');
+    response.clearCookie('username');
+    response.redirect('/');
+  }
+});
 
 var globals     = require('./definitions/globals');
 var events      = require('./definitions/events')(http);
