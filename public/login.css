@@ -11,8 +11,21 @@ body {
   margin: 0 auto;
   margin-top: 25px;
   padding: 20px;
+  position: relative;
   text-align: center;
-  width: 215px;
+  width: 270px;
+}
+.login-form p {
+  background-color: #fcc;
+  border: 1px solid #ff0900;
+  color: #ff0900;
+  padding: 10px;
+  position: absolute;
+  left: 40px;
+  top: 0;
+}
+.login-form form {
+  margin: 40px 30px 10px;
 }
 .login-form label {
   line-height: 25px;
