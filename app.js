@@ -16,6 +16,10 @@ var middleware  = require('./definitions/middleware')(app);
 var events      = require('./definitions/events')(http);
 var router      = require('./definitions/router')(app);
 
+app.use(function(req, res, next){
+  res.status(404).send('Not found');
+});
+
 var port = Number(process.env.PORT || 5000);
 http.listen(port, function() {
   console.log('listening on ' + port);
