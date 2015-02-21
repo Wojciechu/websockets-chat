@@ -1,5 +1,7 @@
 Websockets project repository
 
+Demo: http://thawing-ocean-5925.herokuapp.com
+
 To try this project please follow instructions below:
 
 - Install all relevant packages
