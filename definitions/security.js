@@ -2,9 +2,10 @@ var cryptoJS  = require('crypto-js');
 var users = require('./database').users;
 
 exports.authenticate = function (username, hash) {
+  var salt = users[username] ? users[username].salt : '';
   var dbHash = users[username] ? users[username].hash : '';
 
-  if(hash === dbHash) {
+  if(cryptoJS.HmacSHA256(hash, salt).toString() === dbHash) {
     return true;
   }
   else {
@@ -12,11 +13,11 @@ exports.authenticate = function (username, hash) {
   }
 };
 
-exports.authorize = function (username, token) {
+exports.authorize = function (username, authZToken) {
   var hash = users[username] ? users[username].hash : '';
   var dbHash = cryptoJS.HmacSHA256(hash + process.pid, 'mostSecretish').toString();
 
-  if (dbHash === token) {
+  if (dbHash === authZToken) {
     return true;
   }
   else {
@@ -29,6 +30,8 @@ exports.generateSalt = function (username) {
   return cryptoJS.HmacSHA256(username + salt, 'verySecret').toString();
 };
 
-exports.prepareAuthZToken = function (authNToken) {
+exports.prepareAuthZToken = function (credentials) {
+  var salt = users[credentials.username] ? users[credentials.username].salt : '';
+  var authNToken =cryptoJS.HmacSHA256(credentials.hash, salt).toString();
   return cryptoJS.HmacSHA256(authNToken + process.pid, 'mostSecretish').toString();
 };

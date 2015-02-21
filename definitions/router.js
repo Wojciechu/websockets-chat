@@ -3,7 +3,7 @@ var security = require('./security');
 module.exports = function (app) {
 
   app.get('/', function(request, response) {
-    if (request.session.hash) {
+    if (request.session.token) {
       response.redirect('/chat');
     }
     else {
@@ -16,12 +16,12 @@ module.exports = function (app) {
   });
 
   app.post('/login/auth', function(request, response) {
-    var token;
+    var authZToken;
     var credentials = request.body;
     if(security.authenticate(credentials.username, credentials.hash)) {
-      token = security.prepareAuthZToken(credentials.hash);
+      authZToken = security.prepareAuthZToken(credentials);
       request.session.username = credentials.username;
-      request.session.hash = token;
+      request.session.token = authZToken;
       response.redirect('/chat');
     }
     else {

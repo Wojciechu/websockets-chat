@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(cookieSession({secret: 'W385OCK375'}));
 
 app.use('/chat', function (request, response, next) {
-  if(authorize(request.session.username, request.session.hash)) {
+  if(authorize(request.session.username, request.session.token)) {
     next();
   } 
   else {
