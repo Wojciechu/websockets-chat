@@ -7,7 +7,7 @@ module.exports = function (app) {
   });
 
   app.get('/chat', function(request, response) {
-    response.render('chat');
+    response.render('chat', {username: request.session.username});
   });
 
   app.post('/login/auth', function(request, response) {
@@ -15,8 +15,8 @@ module.exports = function (app) {
     var credentials = request.body;
     if(security.authenticate(credentials.username, credentials.hash)) {
       token = security.prepareAuthZToken(credentials.hash);
-      response.cookie('hash', token);
-      response.cookie('username', credentials.username);
+      request.session.username = credentials.username;
+      request.session.hash = token;
       response.redirect('/chat');
     }
     else {
@@ -30,8 +30,7 @@ module.exports = function (app) {
   });
 
   app.get('/logout', function(request, response) {
-    response.clearCookie('hash');
-    response.clearCookie('username');
+    request.session = null;
     response.redirect('/');
   });
 };

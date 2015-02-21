@@ -4,6 +4,7 @@ var http        = require('http').createServer(app);
 var path        = require('path');
 var bodyParser  = require('body-parser');
 var cookieParser = require('cookie-parser');
+var cookieSession= require('cookie-session');
 var cryptoJS = require('crypto-js');
 var authorize = require('./definitions/security').authorize;
 
@@ -12,14 +13,14 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieSession({secret: 'W385OCK375'}));
 
 app.use('/chat', function (request, response, next) {
-  if(authorize(request.cookies.username, request.cookies.hash)) {
+  if(authorize(request.session.username, request.session.hash)) {
     next();
   } 
   else {
-    response.clearCookie('hash');
-    response.clearCookie('username');
+    request.session = null;
     response.redirect('/');
   }
 });

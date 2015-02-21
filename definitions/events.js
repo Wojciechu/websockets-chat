@@ -2,10 +2,10 @@ module.exports = function (http) {
   var io = require('socket.io')(http);
 
   var users = {};
+  var counter = 0;
 
   io.on('connection', function(socket) {
 
-    var counter = 0;
     var user = 'some user';
     users[socket.id] = user;
 
