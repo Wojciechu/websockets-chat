@@ -26,7 +26,7 @@ app.use('/chat', function (request, response, next) {
 });
 
 var globals     = require('./definitions/globals');
-var events      = require('./definitions/events')(http);
+var events      = require('./definitions/chat')(http);
 var router      = require('./definitions/router')(app);
 
 app.use(function(request, response){

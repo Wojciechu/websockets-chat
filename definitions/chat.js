@@ -8,6 +8,10 @@ module.exports = function (http) {
 
     var user = 'some user';
     users[socket.id] = user;
+    
+    if(_.size(users) === 1) {
+      counter = 0;
+    }
 
     socket.on('name addition', function(name) {
       user = name;
