@@ -3,7 +3,12 @@ var security = require('./security');
 module.exports = function (app) {
 
   app.get('/', function(request, response) {
-    response.render('login', {error: request.query.error});
+    if (request.session.hash) {
+      response.redirect('/chat');
+    }
+    else {
+      response.render('login', {error: request.query.error});
+    }
   });
 
   app.get('/chat', function(request, response) {
