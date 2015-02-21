@@ -17,8 +17,10 @@ module.exports = function (http) {
     });
     
     socket.on('chat message', function(msg) {
-      counter = counter + 1;
-      io.emit('chat message', { id: counter, user: user, msg: msg, time: moment().calendar() });
+      if(msg){
+        counter = counter + 1;
+        io.emit('chat message', { id: counter, user: user, msg: msg, time: moment().calendar() });
+      }
     });
 
     socket.on('disconnect', function() {
