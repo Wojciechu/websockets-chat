@@ -9,7 +9,8 @@ body {
   width: 100%;
 }
 .menu .notify-sound {
-  cursor: default;
+  border-right: 1px solid #333;
+  cursor: pointer;
   line-height: 35px;
   padding-left: 14px;
   position: relative;
@@ -56,6 +57,7 @@ body {
   background-color: #000;
   border: none;
   color: #fff;
+  cursor: pointer;
   float: right;
   height: 35px;
   padding: 0 10px;
