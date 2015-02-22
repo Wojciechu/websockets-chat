@@ -34,7 +34,8 @@
     $count.append(users.length);
 
     $users.empty();
-    _.forEach(users, function (value) {
+
+    users.forEach(function (value) {
       $users.append('<li>{0}</li>'.format(value));
     });
   });
