@@ -8,11 +8,33 @@ body {
   height: 35px;
   width: 100%;
 }
+.menu .notify-sound {
+  cursor: default;
+  line-height: 35px;
+  padding-left: 14px;
+  position: relative;
+  width: 130px;
+}
+.menu .notify-sound:hover {
+  background-color: #333
+}
+.menu .notify-sound .icon {
+  background-color: #555;
+  border-radius: 3px;
+  display: block;
+  height: 7px;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  width: 7px;
+}
+.menu .notify-sound.sound-on .icon {
+  background-color: #0f0;
+}
 .menu .logout {
   border-left: 1px solid #333;
   color: #fff;
   float: right;
-  height: 35px;
   line-height: 35px;
   text-align: center;
   text-decoration: none;
@@ -24,7 +46,6 @@ body {
 .menu .you {
   border-right: 1px solid #333;
   float: right;
-  height: 35px;
   line-height: 35px;
 }
 .menu .you .name {
