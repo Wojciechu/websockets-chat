@@ -5,16 +5,16 @@
   var urlPattern = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   var name = $('.name').attr('data-username');
   
-  socket.emit('name addition', name);
+  socket.emit('name-addition', name);
 
-  $('.send-box').submit(function () {
+  $('.send-box').on('submit', function () {
     var $message = $('.send-box input');
-    socket.emit('chat message', $message.val());
+    socket.emit('chat-message', $message.val());
     $message.val('');
     return false;
   });
 
-  socket.on('chat message', function (data) {
+  socket.on('chat-message', function (data) {
     var message = data.msg;
 
     message = message.replace(urlPattern, function (value) {
