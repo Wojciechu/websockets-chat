@@ -11,7 +11,7 @@ var chatModule = (function () {
       return false;
     },
 
-    bindSoundNotification: function () {
+    toggleSoundNotification: function () {
       var $this = $(this);
       if ($this.hasClass('sound-on')) {
         $this.removeClass('sound-on');
@@ -63,7 +63,7 @@ var chatModule = (function () {
       socket.emit('name-addition', name);
 
       $('.send-box').on('submit', _private.submitMessage);
-      $('.notify-sound').on('click', _private.bindSoundNotification);
+      $('.notify-sound').on('click', _private.toggleSoundNotification);
       _private.bindSocketEvents();
     }
   };
