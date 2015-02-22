@@ -1,15 +1,14 @@
 body {
   background-color: #f1f1f1;
-  font: 15px Helvetica, Arial;
+  font: 15px Helvetica, Arial, sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 .login-form {
   background-color: #fff;
-  border: 1px solid #99bbff;
-  margin: 0 auto;
-  margin-top: 25px;
+  border: 1px solid #9bf;
+  margin: 25px auto;
   padding: 20px;
   position: relative;
   text-align: center;
@@ -36,12 +35,12 @@ body {
   width: 200px;
 }
 .login-form button {
-  background-color: #ffff00;
-  border: none;
+  background-color: #ff0;
+  border: 0;
   line-height: 30px;
   margin-top: 15px;
   width: 100px;
 }
 .login-form button:hover {
-  background-color: #ffcc00;
+  background-color: #fc0;
 }
