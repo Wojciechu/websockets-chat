@@ -1,12 +1,12 @@
-var express     = require('express');
-var app         = express();
-var http        = require('http').createServer(app);
-var path        = require('path');
-var bodyParser  = require('body-parser');
-var cookieParser = require('cookie-parser');
-var cookieSession= require('cookie-session');
-var cryptoJS = require('crypto-js');
-var authorize = require('./definitions/security').authorize;
+var express       = require('express');
+var app           = express();
+var http          = require('http').createServer(app);
+var path          = require('path');
+var bodyParser    = require('body-parser');
+var cookieParser  = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var cryptoJS      = require('crypto-js');
+var authorize     = require('./definitions/security').authorize;
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(cookieSession({secret: 'W385OCK375'}));
 
 app.use('/chat', function (request, response, next) {
-  if(authorize(request.session.username, request.session.token)) {
+  if (authorize(request.session.username, request.session.token)) {
     next();
   } 
   else {
@@ -29,7 +29,7 @@ var globals     = require('./definitions/globals');
 var events      = require('./definitions/chat')(http);
 var router      = require('./definitions/router')(app);
 
-app.use(function(request, response){
+app.use(function(request, response) {
   response.status(404).send('Not found');
 });
 

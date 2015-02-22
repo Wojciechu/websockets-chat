@@ -1,11 +1,11 @@
 var cryptoJS  = require('crypto-js');
-var users = require('./database').users;
+var users     = require('./database').users;
 
 exports.authenticate = function (username, hash) {
   var salt = users[username] ? users[username].salt : '';
   var dbHash = users[username] ? users[username].hash : '';
 
-  if(cryptoJS.HmacSHA256(hash, salt).toString() === dbHash) {
+  if (cryptoJS.HmacSHA256(hash, salt).toString() === dbHash) {
     return true;
   }
   else {
