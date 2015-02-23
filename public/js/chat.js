@@ -2,6 +2,7 @@
 
 var chatModule = (function () {
   var socket = io();
+  var username = $('.name').attr('data-username');
 
   var _private = {
     /**
@@ -32,6 +33,13 @@ var chatModule = (function () {
      */
     bindSocketEvents: function () {
       var urlPattern = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+      
+      /**
+       * Emits username to server after connection
+       */
+      socket.on('connect', function () {
+        socket.emit('name-addition', username);
+      });
       
       /**
        * Called when message comes 
@@ -80,9 +88,6 @@ var chatModule = (function () {
 
   return {
     init: function () {
-      var name = $('.name').attr('data-username'); 
-      socket.emit('name-addition', name);
-
       $('.send-box').on('submit', _private.submitMessage);
       $('.notify-sound').on('click', _private.toggleSoundNotification);
       _private.bindSocketEvents();
