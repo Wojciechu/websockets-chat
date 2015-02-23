@@ -2,6 +2,9 @@
 
 var loginModule = (function () {
   var _private = {
+    /**
+     * Submits user credentials
+     */
     submitCredentials: function () {
       var data = {
         username: $('#username').val()
