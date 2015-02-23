@@ -7,13 +7,14 @@ var cookieParser  = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var cryptoJS      = require('crypto-js');
 var authorize     = require('./definitions/security').authorize;
+var config        = require('./definitions/config');
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cookieSession({secret: 'W385OCK375'}));
+app.use(cookieSession({secret: config.secretSession}));
 
 app.use('/chat', function (request, response, next) {
   if (authorize(request.session.username, request.session.token)) {
