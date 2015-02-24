@@ -6,6 +6,7 @@ var bodyParser    = require('body-parser');
 var cookieParser  = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var cryptoJS      = require('crypto-js');
+var csrf          = require('csurf');
 var authorize     = require('./definitions/security').authorize;
 var config        = require('./definitions/config');
 
@@ -15,6 +16,12 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieSession({secret: config.secretSession}));
+app.use(csrf());
+
+app.use(function (request, response, next) {
+  response.locals.csrftoken = request.csrfToken();
+  next();
+});
 
 app.use('/chat', function (request, response, next) {
   if (authorize(request.session.username, request.session.token)) {

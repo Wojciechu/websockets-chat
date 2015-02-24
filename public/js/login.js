@@ -7,7 +7,8 @@ var loginModule = (function () {
      */
     submitCredentials: function () {
       var data = {
-        username: $('#username').val()
+        username: $('#username').val(),
+        _csrf: $('[name=_csrf]').val()
       };
       $.ajax({
         url: "/login/salt", 
