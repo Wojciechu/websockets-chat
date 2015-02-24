@@ -9,8 +9,8 @@ module.exports = function (http) {
    */
   io.on('connection', function (socket) {
 
-    var user = 'some user';
-    users[socket.id] = user;
+    var username = 'some user';
+    users[socket.id] = username;
     
     if (_.size(users) === 1) {
       counter = 0;
@@ -21,10 +21,10 @@ module.exports = function (http) {
      * @param  {String} name User name
      */
     socket.on('name-addition', function (name) {
-      user = name;
-      users[socket.id] = name;
+      username = sanitizer.sanitize(name);
+      users[socket.id] = username;
       io.emit('registered-users', _.values(users));
-      io.emit('chat-message', { user: 'Server', msg: user + ' joined chat', time: moment().calendar() });
+      io.emit('chat-message', { user: 'Server', msg: username + ' joined chat', time: moment().calendar() });
     });
     
     /**
@@ -32,9 +32,10 @@ module.exports = function (http) {
      * @param  {String} msg   Message content
      */
     socket.on('chat-message', function (msg) {
-      if (msg){
+      var message = sanitizer.sanitize(msg);
+      if (message){
         counter = counter + 1;
-        io.emit('chat-message', { id: counter, user: user, msg: msg, time: moment().calendar() });
+        io.emit('chat-message', { id: counter, user: username, msg: message, time: moment().calendar() });
       }
     });
 
@@ -44,7 +45,7 @@ module.exports = function (http) {
     socket.on('disconnect', function () {
       delete users[socket.id];
       io.emit('registered-users', _.values(users));
-      io.emit('chat-message', { user: 'Server', msg: user + ' left chat', time: moment().calendar() });
+      io.emit('chat-message', { user: 'Server', msg: username + ' left chat', time: moment().calendar() });
     });
   });
 };

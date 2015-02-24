@@ -17,10 +17,12 @@ module.exports = function (app) {
 
   app.post('/login/auth', function (request, response) {
     var authZToken;
-    var credentials = request.body;
-    if (security.authenticate(credentials.username, credentials.hash)) {
-      authZToken = security.prepareAuthZToken(credentials);
-      request.session.username = credentials.username;
+    var username = sanitizer.sanitize(request.body.username);
+    var hash = sanitizer.sanitize(request.body.hash);
+
+    if (security.authenticate(username, hash)) {
+      authZToken = security.prepareAuthZToken(username, hash);
+      request.session.username = username;
       request.session.token = authZToken;
       response.redirect('/chat');
     }
@@ -30,8 +32,8 @@ module.exports = function (app) {
   });
 
   app.post('/login/salt', function (request, response) {
-    var salt = security.generateSalt(request.body.username);
-    response.send(salt);
+    var username = sanitizer.sanitize(request.body.username);
+    response.send(security.generateSalt(username));
   });
 
   app.get('/logout', function (request, response) {

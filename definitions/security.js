@@ -55,8 +55,8 @@ exports.generateSalt = function (username) {
  * @param  {String} credentials.hash      Users password hash
  * @return {String}                       Authorization token
  */
-exports.prepareAuthZToken = function (credentials) {
-  var salt = users[credentials.username] ? users[credentials.username].salt : '';
-  var authNToken =cryptoJS.HmacSHA256(credentials.hash, salt).toString();
+exports.prepareAuthZToken = function (username, hash) {
+  var salt = users[username] ? users[username].salt : '';
+  var authNToken =cryptoJS.HmacSHA256(hash, salt).toString();
   return cryptoJS.HmacSHA256(authNToken + process.pid, config.secretTwo).toString();
 };
