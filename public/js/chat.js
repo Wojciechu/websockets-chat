@@ -2,7 +2,7 @@
 
 var chatModule = (function () {
   var socket = io();
-  var username = $('.name').attr('data-username');
+  var username = $('[data-username]').data('username');
 
   var _private = {
     /**
