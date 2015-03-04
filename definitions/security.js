@@ -12,12 +12,7 @@ exports.authenticate = function (username, hash) {
   var salt = users[username] ? users[username].salt : '';
   var dbHash = users[username] ? users[username].hash : '';
 
-  if (cryptoJS.HmacSHA256(hash, salt).toString() === dbHash) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return (cryptoJS.HmacSHA256(hash, salt).toString() === dbHash);
 };
 
 /**
@@ -30,12 +25,7 @@ exports.authorize = function (username, authZToken) {
   var hash = users[username] ? users[username].hash : '';
   var dbHash = cryptoJS.HmacSHA256(hash + process.pid, config.secretTwo).toString();
 
-  if (dbHash === authZToken) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return (dbHash === authZToken);
 };
 
 /**
